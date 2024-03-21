@@ -7,9 +7,9 @@ import NewsComponent from './News/Components/News.jsx';
  * 
  * @returns {JSX.Element} The rendered ParkInfo component.
  */
-function News(){
+const News = () => {
     return(
-        <div className="news-info-parent">
+        <div className="news-info">
             <NewsComponent />
         </div>
     );

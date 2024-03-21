@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
 /**
  * Component representing the welcome section of the homepage.
@@ -7,15 +7,31 @@ import React from 'react'
  * @returns {JSX.Element} The rendered welcome section.
  */
 const News = () => {
-    return (
-        <div className = "News">
-            <br/>
-            <br/>
-            <br/>
-            <a class="twitter-timeline" target="_blank" href="https://twitter.com/TempleUniv?ref_src=twsrc%5Etfw">Tweets by TempleUniv</a> 
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-    )
-}
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        document.body.appendChild(script);
 
-export default News
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+    return (
+        <div className="News">
+            <br />
+            <br />
+            <br />
+            <a
+                className="twitter-timeline"
+                href="https://twitter.com/TempleUniv?ref_src=twsrc%5Etfw"
+                data-tweet-limit="3"
+            >
+                Tweets by TempleUniv
+            </a>
+        </div>
+    );
+};
+
+export default News;
